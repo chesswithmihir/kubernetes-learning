@@ -20,4 +20,21 @@
 - my-app can have its own service
 - db pod can have its own service
 - lifecycle of Pod and Service Not connected
+- even if the pod dies, no worry about IP changing
 
+### App should be accessible through browser
+- for this you need to create an external service
+- service that opens communication from external sources.
+- don't want DB to be open to the public requests
+- create an internal service for DB
+- url of external service isn't very practical http://nodeIP:port
+- k8s has Ingress to forward better looking names like https://my-app.com to the correct IP:port
+- this prob works a lot like DNS
+
+### ConfigMap and Secret
+
+- pods communicate with each other using a, where do you configure endpoint?
+- usually database url is in the built application.
+- usually you would have to re-build application with new version and then push to repo and now you have to pull that new image in your pod and restart the whole thing
+- very tedious for a small change like database url.
+- 
