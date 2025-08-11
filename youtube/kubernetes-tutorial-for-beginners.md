@@ -41,3 +41,15 @@
 - username and password may change and putting this in a configmap is insecure even though its an external config.
 - for this reason there is another configuration by k8s called Secret which is used to store secret data - stored in a base64 encoded format
 - secret would contain things like credentials.
+- passwords, certificates, and things you dont want people to have access to are secrets
+
+### Volumes
+- if pod gets restarted, data loss
+- Data storage in k8s
+- restarts can be data gone!!
+- persisted reliably long term.
+- volumes help persist data
+- attaches a physical storage to your hardrive on your pod
+- that storage can be local on a same server node or it can be in remote storage meaning cloud storage or own on-prem part of k8s cluster
+- so now when database gets restarted all the data is persisted. its important to understand the distinction between the k8s cluster.
+- k8s doesn't manage data persistence 
