@@ -66,5 +66,11 @@
 - this blueprint is called a deployment
 - in practice you don't work with pods, you work with deployments to deploy and you can also scale up and scale down.
 - Pods are an abstraction over containers and deployments are an abstraction over pods
-- if we have clones or replicas of the database they would all need to access the same shared data storage and there you would need a mechanism that manages which pods are writing to or reading from that storage
-- StatefulSet helps with this like apps like MongoDB or DBs should be created with stateful sets
+- if a pod dies, Service will forward to other pod for resilience
+- what about database pod. because if db pod died, app wont be accessible. need DB replica as well.
+- However, we can't replicate a DB using a deployment because DB has state meaning if we have clones or replicase of the DB they would all need to access the same shared data storage.
+- if this is the case, need a mechanism for whos writing and reading to this shared data storage. Avoid data inconsistencies is hard.
+- StatefulSets helps here with apps like DB because they take care of replicating pods and scaling and makes sure data is consistently reads and writes in a synchronized manner so no inconsistencies form
+- deploying database apps using StatefulSets is not easy :(
+- More difficult thant working with deployments.
+- This is why it's a common practice to host database apps outside of k8s cluster.
