@@ -32,9 +32,12 @@
 - this prob works a lot like DNS
 
 ### ConfigMap and Secret
-
 - pods communicate with each other using a, where do you configure endpoint?
 - usually database url is in the built application.
 - usually you would have to re-build application with new version and then push to repo and now you have to pull that new image in your pod and restart the whole thing
 - very tedious for a small change like database url.
-- 
+- ConfigMap will contains URLs of a database or some other services that use it. and in kubernetes you just connect it to the pod so that the pod gets the data that ConfigMap contains.
+- and now if you change the name of the service the endpoint is just involving adjusting configmap, no need to build a new image and go through a long cycle
+- username and password may change and putting this in a configmap is insecure even though its an external config.
+- for this reason there is another configuration by k8s called Secret which is used to store secret data - stored in a base64 encoded format
+- secret would contain things like credentials.
