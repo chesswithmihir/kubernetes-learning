@@ -74,3 +74,12 @@
 - deploying database apps using StatefulSets is not easy :(
 - More difficult thant working with deployments.
 - This is why it's a common practice to host database apps outside of k8s cluster.
+
+### Summary
+- pods are an abstraction over containers
+- services help pods comunicate
+- ingress helps route traffic into the cluster
+- also looked at external configs with ConfigMap and Secrets
+- and persistence through Volumes
+- finally looked at replicating mechanisms with deployemnts and StatefulSets
+- many more components but these are the core
