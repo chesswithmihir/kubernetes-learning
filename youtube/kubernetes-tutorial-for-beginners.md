@@ -52,4 +52,19 @@
 - attaches a physical storage to your hardrive on your pod
 - that storage can be local on a same server node or it can be in remote storage meaning cloud storage or own on-prem part of k8s cluster
 - so now when database gets restarted all the data is persisted. its important to understand the distinction between the k8s cluster.
-- k8s doesn't manage data persistence 
+- k8s doesn't manage data persistence
+
+
+### Deployment and Stateful Sets
+- what happens if app pod dies?
+- downtime where user cant reach app
+- this is the advantage of distributed systems and containers
+- instead of relying on 1 application pod and 1 database pod, replicate everything on multiple servers
+- have another node where a replica will also run which will be connected to the Service with permanent IPs.
+- Service is also a load balancer which helps catch the request and forward it to whichever pod is less busy, has both of these functionalities.
+- in order to create a second replica of this application pod, you would instead make a blueprint and then state how many replicas you need
+- this blueprint is called a deployment
+- in practice you don't work with pods, you work with deployments to deploy and you can also scale up and scale down.
+- Pods are an abstraction over containers and deployments are an abstraction over pods
+- if we have clones or replicas of the database they would all need to access the same shared data storage and there you would need a mechanism that manages which pods are writing to or reading from that storage
+- StatefulSet helps with this like apps like MongoDB or DBs should be created with stateful sets
